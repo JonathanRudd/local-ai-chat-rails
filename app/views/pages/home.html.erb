@@ -1,0 +1,44 @@
+
+ <div class="wrapper">
+    <h2>GREETINGS</h2>
+    <p></p>
+    <ul class="messages">
+      <li>Thinking...</li>
+    </ul>
+    <form class="add-items">
+      <input type="text" name="item" placeholder="Comment here" required>
+      <input type="submit" value="Ask">
+    </form>
+  </div>
+
+<script>
+  const addItems = document.querySelector('.add-items');
+  const itemsList = document.querySelector('.messages');
+  const items = JSON.parse(localStorage.getItem('items')) || [];
+
+  function addItem(e) {
+    e.preventDefault();
+    const text = (this.querySelector('[name=item]')).value;
+    const item = {text};
+
+    items.push(item);
+    populateList(items, itemsList);
+    localStorage.setItem('items', JSON.stringify(items));
+    this.reset();
+  }
+
+  function populateList(messages = [], messagesList) {
+    messagesList.innerHTML = messages.map((message, i) => {
+      return `
+        <li>
+          <label for="item${i}">${message.text}</label>
+        </li>
+      `;
+    }).join('');
+  }
+
+  addItems.addEventListener('submit', addItem);
+
+  populateList(items, itemsList);
+
+</script>
