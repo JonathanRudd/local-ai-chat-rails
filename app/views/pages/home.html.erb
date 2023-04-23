@@ -16,6 +16,12 @@
   const itemsList = document.querySelector('.messages');
   const items = JSON.parse(localStorage.getItem('items')) || [];
 
+  // const for gpt api: user messages will be added to this array, and used to call gpt api.
+  // Gpt responses will also be added to this array, and both used to populate the ul list
+
+  const messageArray = [];
+
+
   function addItem(e) {
     e.preventDefault();
     const text = (this.querySelector('[name=item]')).value;
@@ -25,6 +31,14 @@
     populateList(items, itemsList);
     localStorage.setItem('items', JSON.stringify(items));
     this.reset();
+
+    // also save text to new array which then calls gpt api
+
+    messageArray.push(text);
+    console.log(messageArray);
+
+    reply = fetch_gpt(messageArray);
+    console.log(reply);
   }
 
   function populateList(messages = [], messagesList) {
@@ -42,3 +56,5 @@
   populateList(items, itemsList);
 
 </script>
+
+fetch_gpt(messageArray);
