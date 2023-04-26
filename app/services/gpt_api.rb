@@ -1,6 +1,6 @@
 require 'openai'
 
-
+# currently empty class for naming purposes, will move methods here later
 class GptApi
 
 end
@@ -13,7 +13,7 @@ end
 # end
 
 
-
+# example:
 convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant", "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What brings you to my humble shop today?" }, { "role": "user", "content": "I am in need of a potion of healing"} ]
 
 def fetch_gpt(messageArray)

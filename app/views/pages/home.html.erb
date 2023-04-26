@@ -14,39 +14,34 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.messages');
+  // items are already saved as a key value pair under text: 'item'
+  // can we change this to include role: "user" and content ""
   const items = JSON.parse(localStorage.getItem('items')) || [];
 
   // const for gpt api: user messages will be added to this array, and used to call gpt api.
   // Gpt responses will also be added to this array, and both used to populate the ul list
 
-  const messageArray = [];
+  // const messageArray = [];
 
 
   function addItem(e) {
     e.preventDefault();
-    const text = (this.querySelector('[name=item]')).value;
-    const item = {text};
+    const input = document.querySelector('input[name="item"]');
+    const text = input.value;
 
-    items.push(item);
-    populateList(items, itemsList);
+    const item = { "role": "user", "content"  : text }; // create object with text property
+    items.push(item); // add item to items array
+    populateList(items, itemsList); // update display of list
     localStorage.setItem('items', JSON.stringify(items));
     this.reset();
 
-    // also save text to new array which then calls gpt api
-    // has to be saved as a hash key value pair, so that the gpt api can be called with the text as an argument
-
-    messageArray.push(text);
-    console.log(messageArray);
-
-    reply = fetch_gpt(messageArray);
-    console.log(reply);
   }
 
   function populateList(messages = [], messagesList) {
     messagesList.innerHTML = messages.map((message, i) => {
       return `
         <li>
-          <label for="item${i}">${message.text}</label>
+          <label for="item${i}">${message.content}</label>
         </li>
       `;
     }).join('');
@@ -57,5 +52,3 @@
   populateList(items, itemsList);
 
 </script>
-
-fetch_gpt(messageArray);
