@@ -2,8 +2,7 @@ require 'openai'
 
 # currently empty class for naming purposes, will move methods here later
 class GptApi
-
-  def fetch_gpt(messageArray)
+  def self.fetch_gpt(messageArray)
     client = OpenAI::Client.new(access_token: ENV.fetch('OPENAI_ACCESS_TOKEN'))
 
     messages = [{ "role": "system", "content": "Pretend you are an NPC in a roleplaying game. You are a potion-seller in a generic fantasy setting. You speak in a mysterious and haughty manner.
@@ -22,9 +21,6 @@ class GptApi
       })
     puts response.dig("choices", 0, "message", "content")
   end
-
-
-
 end
 
 # def client
@@ -36,4 +32,4 @@ end
 
 
 # example:
-convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant", "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What brings you to my humble shop today?" }, { "role": "user", "content": "I am in need of a potion of healing"} ]
+# convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant", "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What brings you to my humble shop today?" }, { "role": "user", "content": "I am in need of a potion of healing"} ]
