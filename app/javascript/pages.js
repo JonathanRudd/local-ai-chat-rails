@@ -1,4 +1,4 @@
-
+// import { GptApi } from "/services/gpt_api";
 
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.messages');
@@ -17,11 +17,9 @@ function addItem(e) {
   localStorage.setItem('items', JSON.stringify(items)); // store updated list in local storage
   this.reset(); // reset form
 
-  // how do I call the function from here?
-
-
-
-  GptApi.fetch_gpt(items); // call fetch_gpt function from gpt_api.rb
+  // call the GptApi class in gpt_api.rb, passing to it the items array
+  shopkeeper = new GptApi(items);
+  shopkeeper.get_response();
 }
 
 function populateList(messages = [], messagesList) {

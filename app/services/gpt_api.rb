@@ -1,6 +1,5 @@
 require 'openai'
 
-# currently empty class for naming purposes, will move methods here later
 class GptApi
   def self.fetch_gpt(messageArray)
     client = OpenAI::Client.new(access_token: ENV.fetch('OPENAI_ACCESS_TOKEN'))
@@ -21,6 +20,7 @@ class GptApi
       })
     puts response.dig("choices", 0, "message", "content")
   end
+
 end
 
 # def client
