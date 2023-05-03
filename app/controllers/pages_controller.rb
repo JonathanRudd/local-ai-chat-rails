@@ -1,8 +1,12 @@
 class PagesController < ApplicationController
   def home
+
+    # must add POST request to gpt_api.rb call function
+
+
     @title = "Home"
 
-    @response = ChatgptService.call(params[:message])
+
 
   end
 
