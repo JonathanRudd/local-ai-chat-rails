@@ -1,4 +1,5 @@
 require 'openai'
+require 'httparty'
 
 class GptApi
   include HTTParty
@@ -14,7 +15,7 @@ class GptApi
     p messages
 
 # add call method using HTTParty
-# I need to use .post to send the request to the API
+# I need to use HTTParty.post() to send the request to the API
 
     response = client.chat(
       parameters: {
@@ -26,3 +27,10 @@ class GptApi
   end
 
 end
+
+
+# convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant",
+#   "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What
+#  brings you to my humble shop today?" }, { "role": "user", "content": "I am in need of a potion of healing"} ]
+
+# GptApi.fetch_gpt(convoArray)
