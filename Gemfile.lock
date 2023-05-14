@@ -224,6 +224,7 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
+  httparty
   importmap-rails
   jbuilder
   puma (~> 5.0)

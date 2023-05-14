@@ -1,6 +1,7 @@
 require 'openai'
 
 class GptApi
+  include HTTParty
   def self.fetch_gpt(messageArray)
     client = OpenAI::Client.new(access_token: ENV.fetch('OPENAI_ACCESS_TOKEN'))
 
@@ -12,6 +13,9 @@ class GptApi
 
     p messages
 
+# add call method using HTTParty
+# I need to use .post to send the request to the API
+
     response = client.chat(
       parameters: {
           model: "gpt-3.5-turbo", # Required.
@@ -22,14 +26,3 @@ class GptApi
   end
 
 end
-
-# def client
-#   @client ||= Line::Bot::Client.new do |config|
-#     config.channel_secret = ENV['LINE_CHANNEL_SECRET']
-#     config.channel_token = ENV['LINE_ACCESS_TOKEN']
-#   end
-# end
-
-
-# example:
-# convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant", "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What brings you to my humble shop today?" }, { "role": "user", "content": "I am in need of a potion of healing"} ]
