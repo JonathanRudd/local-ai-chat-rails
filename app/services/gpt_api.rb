@@ -2,8 +2,8 @@ require 'openai'
 require 'httparty'
 
 class GptApi
-  include HTTParty
-  def self.fetch_gpt(messageArray)
+  # include HTTParty
+  def fetch_gpt(messageArray)
     client = OpenAI::Client.new(access_token: ENV.fetch('OPENAI_ACCESS_TOKEN'))
 
     messages = [{ "role": "system", "content": "Pretend you are an NPC in a roleplaying game. You are a potion-seller in a generic fantasy setting. You speak in a mysterious and haughty manner.

@@ -1,6 +1,4 @@
 
-<%# <% require 'services/gpt_api.rb' %>
-
 
   <div class="wrapper">
     <h2>GREETINGS</h2>
@@ -33,16 +31,6 @@
     localStorage.setItem('items', JSON.stringify(items)); // store updated list in local storage
     this.reset(); // reset form
 
-    // call the GptApi class in gpt_api.rb, passing to it the items array
-
-
-
-
-
-    // const gptApi = new GptApi(items);
-    // gptApi.callApi();
-
-
   }
 
   function populateList(messages = [], messagesList) {
@@ -59,3 +47,14 @@
 
   populateList(items, itemsList);
 </script>
+
+<%=  convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant",
+    "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What
+   brings you to my humble shop today?" }, { "role": "user", "content": "I am in need of a potion of healing"} ]
+ %>
+
+
+
+<% gptCall = GptApi.new %>
+
+<%= gptCall.fetch_gpt(convoArray) %>
