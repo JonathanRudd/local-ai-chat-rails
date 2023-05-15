@@ -4,10 +4,6 @@ class PagesController < ApplicationController
     # must add POST request to gpt_api.rb call function
     # how can I use the POST request to send the convoArray to the API?
 
-
-
-
-
   end
 
   # def call(items)

@@ -12,18 +12,18 @@ class GptApi
       messages << message
     end
 
-    p messages
-
-# add call method using HTTParty
-# I need to use HTTParty.post() to send the request to the API
-
+    # p messages
     response = client.chat(
       parameters: {
           model: "gpt-3.5-turbo", # Required.
           messages: messages,
           temperature: 0.7,
       })
-    puts response.dig("choices", 0, "message", "content")
+    # puts response.dig("choices", 0, "message", "content")
+
+    response['choices'][-1]["message"]["content"]
+    # this returns the last message in the array, but also the first message in the array is the prompt
+    # so I need to remove the first message from the array by using .shift
   end
 
 end
