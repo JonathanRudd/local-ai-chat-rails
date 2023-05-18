@@ -17,7 +17,9 @@ class GptApi
           temperature: 0.7,
       })
 
-response['choices'][-1]["message"]["content"]
+response['choices'][-1]["message"]
+
+# response['choices'][-1]["message"]["content"]
 
   end
 end
