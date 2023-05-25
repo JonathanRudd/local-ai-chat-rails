@@ -1,5 +1,6 @@
 
- <div class="wrapper">
+
+  <div class="wrapper">
     <h2>GREETINGS</h2>
     <p></p>
     <ul class="messages">
@@ -11,50 +12,32 @@
     </form>
   </div>
 
+
+
+
 <script>
-  const addItems = document.querySelector('.add-items');
-  const itemsList = document.querySelector('.messages');
-  const items = JSON.parse(localStorage.getItem('items')) || [];
-
-  // const for gpt api: user messages will be added to this array, and used to call gpt api.
-  // Gpt responses will also be added to this array, and both used to populate the ul list
-
-  const messageArray = [];
 
 
-  function addItem(e) {
-    e.preventDefault();
-    const text = (this.querySelector('[name=item]')).value;
-    const item = {text};
+  // var testo = items;
+  // var testoElement = document.querySelector('#testo');
 
-    items.push(item);
-    populateList(items, itemsList);
-    localStorage.setItem('items', JSON.stringify(items));
-    this.reset();
-
-    // also save text to new array which then calls gpt api
-
-    messageArray.push(text);
-    console.log(messageArray);
-
-    reply = fetch_gpt(messageArray);
-    console.log(reply);
-  }
-
-  function populateList(messages = [], messagesList) {
-    messagesList.innerHTML = messages.map((message, i) => {
-      return `
-        <li>
-          <label for="item${i}">${message.text}</label>
-        </li>
-      `;
-    }).join('');
-  }
-
-  addItems.addEventListener('submit', addItem);
-
-  populateList(items, itemsList);
+  // testoElement.textContent = testo; // Update text content of the element
 
 </script>
 
-fetch_gpt(messageArray);
+<%  convoArray = [{ "role": "user", "content": "Greetings Potion Seller" }, { "role": "assistant",
+  "content": "Welcome, adventurer. I am the potion seller, purveyor of the finest elixirs in all the land. What
+  brings you to my humble shop today?" }, { "role": "user",
+  "content": "I am in need of a potion of healing"}, { "role": "assistant",
+  "content": "Ah, a wise choice indeed. A potion of healing can be the difference between life and death on any perilous journey. I have just the thing for you. This potion is brewed from the purest ingredients, and has the power to mend even the gravest of wounds. However, I must warn you, it does not come cheaply. Are you willing to pay the price?"}, { "role": "user",
+  "content": "I am willing to pay the price"}]
+%>
+
+
+
+
+<% gptCall = GptApi.new %>
+
+
+
+<%# <%= gptCall.fetch_gpt(convoArray) %> %>
